@@ -13,7 +13,7 @@
 
 class dna:
     
-    #Simple instantiation requirements, name for fasta/fastq
+    #initialization requires string sequence and an optional name
     def __init__(self, sequence: str, name=None):
         self.sequence = sequence
         self.name = name
@@ -34,25 +34,51 @@ class dna:
        "GCU":"A", "GCC":"A", "GCA":"A", "GCG":"A",
        "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
        "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G"}
+        self.iupac = ['A','G','C', 'T', 'R', 
+                      'Y', 'S', 'W', 'K', 'M',
+                      'B', 'D', 'H', 'V', 'N', 
+                      'a', 'c', 'g', 't' , 'r', 
+                      'y', 's', 'w', 'k', 'm', 
+                      'b', 'd', 'h', 'v', 'n']
+        self.correct_dna()
     
-    def __str__(self):
+    #Corrects any nucleotides that are not IUPAC coded or any lowercase nucleotides
+    def correct_dna(self) -> None:
+        new_sequence = ''
+        for nucleotide in self.sequence:
+            if nucleotide not in self.iupac:
+                nucleotide = 'N'
+                new_sequence += nucleotide
+            elif nucleotide.islower():
+                nucleotide = nucleotide.upper()
+                new_sequence += nucleotide
+            else:
+                new_sequence += nucleotide
+        self.sequence = new_sequence
+    
+    #Allows for easy reading of dna sequence
+    def __str__(self) -> str:
         return self.sequence
     
     #Compute the complement of dna object
-    def complement(self):
+    def complement(self) -> str:
         complement = ''
         for nucleotide in self.sequence:
             complement += self.complementation[nucleotide]
         return complement
     
-    def reverse_complement(self):
+    def reverse_complement(self) -> str:
         return self.complement()[::-1]
     
     #Compute the transcription of dna object
-    def transcription(self):
-        return self.sequence.replace('T','U')
+    def transcription(self) -> str:
+        return self.sequence.replace('T', 'U')
     
-    def translation(self):
+    def reverse_transcription(self) -> str:
+        return self.sequence.replace('U', 'T')
+    
+    #Translates DNA sequence into its corresponding AminoAcid sequence
+    def translation(self) -> str:
         rna = self.transcription()
         protein = ''
         for i in range(0, len(rna), 3):
@@ -63,3 +89,11 @@ class dna:
             else:
                     return protein
         return protein
+    
+    #Determines whether sequence is DNA or RNA
+    def is_dna(self) -> bool:
+        for nucleotide in self.sequence:
+            if nucleotide == 'u' or nucleotide == 'U':
+                print('Contains Uracil. Probably RNA.')
+                return False
+        return True
