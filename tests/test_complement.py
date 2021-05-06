@@ -16,7 +16,9 @@ class test_correction(unittest.TestCase):
 		non_dna = dna('AGT!Q')
 		self.assertFalse(non_dna.sequence[1] == non_dna.complement()[1])
 
-
+	def test_normal_string(self):
+		normal_dna = dna('AGTCAGTAGAC')
+		self.assertEqual(normal_dna.complement(), 'TCAGTCATCTG')
 
 if __name__ == '__main__':
 	unittest.main()
