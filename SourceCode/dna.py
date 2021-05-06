@@ -63,12 +63,15 @@ class dna:
     
     #Compute the complement of dna object
     def complement(self) -> str:
-        complement = ''
-        for nucleotide in self.sequence:
-            if nucleotide.upper() in self.complementation:
-                complement += self.complementation[nucleotide.upper()]
-            else:
-                return str(nucleotide) + ' is not a valid nucleotide argument'
+        if not self.dna:
+            raise Exception('Not valid DNA string. Please correct the sequence.')
+        else:
+            complement = ''
+            for nucleotide in self.sequence:
+                if nucleotide.upper() in self.complementation:
+                    complement += self.complementation[nucleotide.upper()]
+                else:
+                    return str(nucleotide) + ' is not a valid nucleotide argument'
         return complement
 
     #Dependent on the complement method above
@@ -102,8 +105,8 @@ class dna:
     #Determines whether sequence is DNA or RNA
     def is_dna(self) -> bool:
         if self.sequence == '' or self.sequence == None:
-		return False
-	for index, nucleotide in enumerate(self.sequence):
+            return False
+        for index, nucleotide in enumerate(self.sequence):
             if nucleotide == 'u' or nucleotide == 'U':
                 print('First Uracil found at index: ' + str(index + 1) + '. Probably RNA.')
                 return False
