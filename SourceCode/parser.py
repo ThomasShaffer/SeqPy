@@ -5,6 +5,8 @@
     Parameters:
         file: File path of fasta/fastq to parse. Must contain correct format
 
+    Return:
+	dictionary: keys = name, values = sequences
 """
 
 
