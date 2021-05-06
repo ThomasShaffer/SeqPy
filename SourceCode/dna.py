@@ -41,6 +41,7 @@ class dna:
                       'y', 's', 'w', 'k', 'm', 
                       'b', 'd', 'h', 'v', 'n',
                       '.', '-']
+        self.dna = self.is_dna()
     
     #Corrects any nucleotides that are not IUPAC coded or any lowercase nucleotides
     def correction(self) -> None:
@@ -64,7 +65,10 @@ class dna:
     def complement(self) -> str:
         complement = ''
         for nucleotide in self.sequence:
-            complement += self.complementation[nucleotide]
+            if nucleotide.upper() in self.complementation:
+                complement += self.complementation[nucleotide.upper()]
+            else:
+                return str(nucleotide) + ' is not a valid nucleotide argument'
         return complement
 
     #Dependent on the complement method above
@@ -73,7 +77,10 @@ class dna:
     
     #Compute the transcription of dna object
     def transcription(self) -> str:
-        return self.sequence.replace('T', 'U')
+        if not self.dna:
+            raise Exception('Not valid DNA string. Please correct the sequence.')
+        else:
+            return self.sequence.replace('T','U')
 
     #Dependent on the transcription method above
     def reverse_transcription(self) -> str:
