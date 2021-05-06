@@ -39,11 +39,11 @@ class dna:
                       'B', 'D', 'H', 'V', 'N', 
                       'a', 'c', 'g', 't' , 'r', 
                       'y', 's', 'w', 'k', 'm', 
-                      'b', 'd', 'h', 'v', 'n']
-        self.correct_dna()
+                      'b', 'd', 'h', 'v', 'n',
+                      '.', '-']
     
     #Corrects any nucleotides that are not IUPAC coded or any lowercase nucleotides
-    def correct_dna(self) -> None:
+    def correction(self) -> None:
         new_sequence = ''
         for nucleotide in self.sequence:
             if nucleotide not in self.iupac:
