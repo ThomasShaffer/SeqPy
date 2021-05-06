@@ -66,14 +66,16 @@ class dna:
         for nucleotide in self.sequence:
             complement += self.complementation[nucleotide]
         return complement
-    
+
+    #Dependent on the complement method above
     def reverse_complement(self) -> str:
         return self.complement()[::-1]
     
     #Compute the transcription of dna object
     def transcription(self) -> str:
         return self.sequence.replace('T', 'U')
-    
+
+    #Dependent on the transcription method above
     def reverse_transcription(self) -> str:
         return self.sequence.replace('U', 'T')
     
