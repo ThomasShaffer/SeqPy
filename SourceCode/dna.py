@@ -94,11 +94,11 @@ class dna:
     
     #Determines whether sequence is DNA or RNA
     def is_dna(self) -> bool:
-        for nucleotide in self.sequence:
+        for index, nucleotide in enumerate(self.sequence):
             if nucleotide == 'u' or nucleotide == 'U':
-                print('Contains Uracil. Probably RNA.')
+                print('First Uracil found at index: ' + str(index + 1) + '. Probably RNA.')
                 return False
             elif nucleotide not in self.iupac:
-                print('Contains Non-IUPAC character' + nucleotide)
+                print('First Non-IUPAC character - ' + nucleotide + ' at index: ' + str(index + 1))
                 return False
         return True
