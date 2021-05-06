@@ -92,9 +92,13 @@ class dna:
     #Translates DNA sequence into its corresponding AminoAcid sequence
     def translation(self) -> str:
         rna = self.transcription()
+        if rna[:3] != 'AUG':
+            raise Exception('There is no start codon to initate translation')
         protein = ''
         for i in range(0, len(rna), 3):
             codon = rna[i:i+3]
+            if codon not in self.amino_acids:
+                raise Exception('Missense mutation. Codon: ' + codon + ' does not encode for amino acid')
             amino_acid = self.amino_acids[codon]
             if amino_acid != 'STOP':
                     protein += self.amino_acids[codon]
