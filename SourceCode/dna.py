@@ -98,4 +98,7 @@ class dna:
             if nucleotide == 'u' or nucleotide == 'U':
                 print('Contains Uracil. Probably RNA.')
                 return False
+            elif nucleotide not in self.iupac:
+                print('Contains Non-IUPAC character' + nucleotide)
+                return False
         return True
