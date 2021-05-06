@@ -1,5 +1,12 @@
-from dna import *
-import sys
+""" Create a class FileParser which parsers files based on their suffixes.
+    FileParser will parse either a fasta format file or a fastq format file.
+    FileParser creates an object which returns a dictionary containing sequence names and sequences
+
+    Parameters:
+        file: File path of fasta/fastq to parse. Must contain correct format
+
+"""
+
 
 class FileParser:
 
