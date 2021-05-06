@@ -85,9 +85,6 @@ class dna:
         else:
             return self.sequence.replace('T','U')
 
-    #Dependent on the transcription method above
-    def reverse_transcription(self) -> str:
-        return self.sequence.replace('U', 'T')
     
     #Translates DNA sequence into its corresponding AminoAcid sequence
     def translation(self) -> str:
