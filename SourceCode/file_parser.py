@@ -53,8 +53,8 @@ class FileParser:
 		return {}
 
 def main():
-	fasta = FileParser('rosalind_gc.fa')
-	print(fasta.sequences['Rosalind_1250'])
+	fasta = FileParser('fast.fa')
+	print(fasta.sequences.items())
 
 if __name__ == '__main__':
 	main()
