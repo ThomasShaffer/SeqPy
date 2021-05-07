@@ -28,7 +28,7 @@ class FileParser:
 			if file.endswith(suffix):
 				fastq = self.parse_fastq(file)
 				return fastq
-		return Exception('Incorrect format type, please input .fasta or .fastq')
+		raise Exception('Incorrect format type, please input .fasta or .fastq')
 
 	#TODO: Create tests for parse_fasta
 	def parse_fasta(self, file: str) -> dict:
@@ -46,6 +46,7 @@ class FileParser:
 				fasta_dict[name] = ''
 			else:
 				fasta_dict[name] += line.rstrip()
+		fasta_file.close()
 		return fasta_dict
 
 	#TODO: FASTQ implementation
@@ -53,7 +54,7 @@ class FileParser:
 		return {}
 
 def main():
-	fasta = FileParser('fast.fa')
+	fasta = FileParser('')
 	print(fasta.sequences.items())
 
 if __name__ == '__main__':
