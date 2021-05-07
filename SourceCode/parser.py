@@ -30,6 +30,7 @@ class FileParser:
 				return fastq
 		return Exception('Incorrect format type, please input .fasta or .fastq')
 
+	#TODO: Create tests for parse_fasta
 	def parse_fasta(self, file: str) -> dict:
 		fasta_dict = {}
 		try:
@@ -47,7 +48,7 @@ class FileParser:
 				fasta_dict[name] += line.rstrip()
 		return fasta_dict
 
-
+	#TODO: FASTQ implementation
 	def parse_fastq(self, file: str) -> dict:
 		return {}
 
