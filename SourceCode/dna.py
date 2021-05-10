@@ -14,6 +14,8 @@
 class dna:
     
     #initialization requires string sequence and an optional name
+    #Complementation and IUPAC tables needed for dna transformations
+    #dna parameter returns a boolean whether or not the sequence contains proper nucleotides
     def __init__(self, sequence: str, name=None):
         self.sequence = sequence
         self.name = name
@@ -44,6 +46,8 @@ class dna:
         self.dna = self.is_dna()
     
     #Corrects any nucleotides that are not IUPAC coded or any lowercase nucleotides
+    #Runs in O(n) where n is the length of the sequence
+    #Memory is n^2 where n is the length of the sequence because a new string is created
     def correction(self) -> None:
         new_sequence = ''
         for nucleotide in self.sequence:
@@ -58,10 +62,15 @@ class dna:
         self.sequence = new_sequence
     
     #Allows for easy reading of dna sequence
+    #Returns sequence if the dna object does not have a name
     def __str__(self) -> str:
-        return self.sequence
+        if self.name == None:
+            return self.sequence
+        return self.name
     
-    #Compute the complement of dna object
+    #Compute the complement of dna object if and only if the sequence is correctly a dna molecule
+    #Runs in O(n) where n is the length of the sequence
+    #Memory is n^2 where n is the length of the sequence because a new string is created
     def complement(self) -> str:
         if not self.dna:
             raise Exception('Not valid DNA string. Please correct the sequence.')
@@ -75,10 +84,13 @@ class dna:
         return complement
 
     #Dependent on the complement method above
+    #Therefore it runs in O(n) where n is the length of the sequence
     def reverse_complement(self) -> str:
         return self.complement()[::-1]
     
     #Compute the transcription of dna object
+    #str.replace worst case in this scenario runs in O(n) because of single character searches
+    #Memory is O(1) because there is no new sequence created
     def transcription(self) -> str:
         if not self.dna:
             raise Exception('Not valid DNA string. Please correct the sequence.')
