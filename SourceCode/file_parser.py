@@ -33,6 +33,7 @@ class FileParser:
 				return fastq
 		raise Exception('Incorrect format type, please input .fasta or .fastq')
 
+
 	#TODO: Create tests for parse_fasta
 	#Helper function that parses a file in the working directory
 	#Returns a dictionary where the name of the sequence is the key and the sequence is the value
@@ -54,6 +55,7 @@ class FileParser:
 		fasta_file.close()
 		return fasta_dict
 
+
 	#TODO: FASTQ implementation
 	#TODO: Read Up on FASTQ Format and formalize how to deal with quality control
 	#Helper function that parses a given file in the working directory
@@ -61,6 +63,7 @@ class FileParser:
 	#Values of said dictionary still needs to be decided upon due to quality control information
 	def parse_fastq(self, file: str) -> dict:
 		return {}
+
 
 def main():
 	fasta = FileParser('fast.fa')
