@@ -98,7 +98,11 @@ class dna:
             return self.sequence.replace('T','U')
 
     
+    #TODO: Reduce the time of translation by making caching transcription at initialization?
     #Translates DNA sequence into its corresponding AminoAcid sequence
+    #First: Creation of rna sequence is O(n), where n is the length of the sequence
+    #Second: For loop checking for codon runs in O(n) because stepping by three indices in string can be ignored in Big O notation
+    #Therefore, this method runs in O(n^2)
     def translation(self) -> str:
         rna = self.transcription()
         if rna[:3] != 'AUG':
@@ -116,6 +120,8 @@ class dna:
         return protein
     
     #Determines whether sequence is DNA or RNA
+    #Runs in O(n) where n is the length of the sequence being checked
+    #Takes no memory as no new sequence is created
     def is_dna(self) -> bool:
         if self.sequence == '' or self.sequence == None:
             return False
@@ -127,3 +133,6 @@ class dna:
                 print('First Non-IUPAC character - ' + nucleotide + ' at index: ' + str(index + 1))
                 return False
         return True
+
+
+#TODO: Create editDistance method? Or possible create an editDistance class?
