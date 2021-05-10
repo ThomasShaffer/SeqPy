@@ -19,6 +19,9 @@ class FileParser:
 		self.sequences = self.parse_file(file)
 		self.size = len(self.sequences)
 
+
+	#Function that contains the logic to determine whether to parse FASTA/FASTQ
+	#If input file string does not contain the correct file suffix, raise exception
 	def parse_file(self, file: str) -> dict:
 		for suffix in self.fasta_suffix:
 			if file.endswith(suffix):
@@ -31,6 +34,8 @@ class FileParser:
 		raise Exception('Incorrect format type, please input .fasta or .fastq')
 
 	#TODO: Create tests for parse_fasta
+	#Helper function that parses a file in the working directory
+	#Returns a dictionary where the name of the sequence is the key and the sequence is the value
 	def parse_fasta(self, file: str) -> dict:
 		fasta_dict = {}
 		try:
@@ -50,11 +55,15 @@ class FileParser:
 		return fasta_dict
 
 	#TODO: FASTQ implementation
+	#TODO: Read Up on FASTQ Format and formalize how to deal with quality control
+	#Helper function that parses a given file in the working directory
+	#Also returns a dictionary, sequence name will still be the key
+	#Values of said dictionary still needs to be decided upon due to quality control information
 	def parse_fastq(self, file: str) -> dict:
 		return {}
 
 def main():
-	fasta = FileParser('')
+	fasta = FileParser('fast.fa')
 	print(fasta.sequences.items())
 
 if __name__ == '__main__':
