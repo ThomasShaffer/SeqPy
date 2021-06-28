@@ -17,7 +17,7 @@ class FileParser:
 				'.fna','.faa','.ffn,']
 		self.fastq_suffix = ['.fastq','.FASTQ','.fq']
 		self.sequences = self.parse_file(file)
-		self.size = len(self.sequences)
+
 
 
 	#Function that contains the logic to determine whether to parse FASTA/FASTQ
@@ -59,28 +59,18 @@ class FileParser:
 	#Helper function that parses a given file in the working directory
 	#Also returns a dictionary, sequence name will still be the key
 	#Values of said dictionary still needs to be decided upon due to quality control information
-	def parse_fastq(self, file: str) -> fastq_read:
-		fastq_dict = {}
+	def parse_fastq(self, file: str) -> fastq_reads:
 		try:
 			fastq_file = open(file, 'r')
 		except:
 			Exception('File not found in directory.')
-		return fastq_read(fastq_file)
+		return fastq_reads(fastq_file)
 
 
-        """counter = -1
-		for line in fastq_file:
-			if counter == -1:
-				counter += 1
-				name = line[1:].strip()
-				fastq_dict[name] = ['','']
-		     
-		return fastq_dict"""
-
-
-def main():
+"""def main():
 	fasta = FileParser('fast.fa')
 	print(fasta.sequences.items())
+"""
 
 if __name__ == '__main__':
 	main()

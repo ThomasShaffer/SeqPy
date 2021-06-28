@@ -1,8 +1,8 @@
 class fastq_reads:
 
     def __init__(self, open_file):
-        self.reads = parse_file(open_file)
-        self.read_counts = len(reads)
+        self.reads = self.parse_file(open_file)
+        self.read_counts = len(self.reads)
         
 
     """
@@ -26,7 +26,7 @@ class fastq_reads:
     ['AGTAGATAGTACACG','-!!_--!lllPLLLO']
 
     """
-    def parse_file(open_file):
+    def parse_file(self, open_file):
         fastq_reads = {}
         
         #Counter to keep track of where in the 4 line sequence we are at
@@ -54,7 +54,7 @@ class fastq_reads:
                 continue
 
             if counter == 3:
-               assert len(lines.rstrip) == len(fastq_reads[read_name][0]), 'Quality sequence must be same length as Read sequence'
+                assert len(lines.rstrip()) == len(fastq_reads[read_name][0]), 'Quality sequence must be same length as Read sequence'
                 fastq_reads[read_name][1] += lines.rstrip()
                 counter = 0
                 continue
