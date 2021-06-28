@@ -38,13 +38,6 @@ class test_correction(unittest.TestCase):
 		self.assertTrue(fasta_file.sequences['FASTA'] == 'AGTGAG')
 		self.assertTrue(fasta_file.sequences['FASTA2'] == 'AGUTAGAUT')
 
-	def test_incorrect_fasta_format(self):
-		"""incorrect_fasta.fa:
-			This should be a '>'
-			43198 - Random Numbers
-		"""
-		incorrect_format = FileParser('incorrect_fasta.fa')
-		self.assertRaises(Exception)
 
 if __name__ == '__main__':
 	unittest.main()
