@@ -8,7 +8,7 @@
     Return:
 	dictionary: keys = name, values = sequences
 """
-
+from fastq import *
 
 class FileParser:
 
@@ -44,10 +44,8 @@ class FileParser:
 		except:
 			raise Exception('File not found in working directory')
 
-		counter = -1
 		for line in fasta_file:
 			if line[0] == '>':
-				counter += 1
 				name = line[1:].strip()
 				fasta_dict[name] = ''
 			else:
@@ -61,8 +59,23 @@ class FileParser:
 	#Helper function that parses a given file in the working directory
 	#Also returns a dictionary, sequence name will still be the key
 	#Values of said dictionary still needs to be decided upon due to quality control information
-	def parse_fastq(self, file: str) -> dict:
-		return {}
+	def parse_fastq(self, file: str) -> fastq_read:
+		fastq_dict = {}
+		try:
+			fastq_file = open(file, 'r')
+		except:
+			Exception('File not found in directory.')
+		return fastq_read(fastq_file)
+
+
+        """counter = -1
+		for line in fastq_file:
+			if counter == -1:
+				counter += 1
+				name = line[1:].strip()
+				fastq_dict[name] = ['','']
+		     
+		return fastq_dict"""
 
 
 def main():
