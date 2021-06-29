@@ -63,8 +63,10 @@ class FileParser:
 		try:
 			fastq_file = open(file, 'r')
 		except:
-			Exception('File not found in directory.')
-		return fastq_reads(fastq_file)
+			raise Exception('File not found in directory')
+		fastq_read = fastq_reads(fastq_file)
+		fastq_file.close()
+		return fastq_read
 
 
 """def main():

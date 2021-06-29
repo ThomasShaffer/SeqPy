@@ -54,7 +54,7 @@ class fastq_reads:
                 continue
 
             if counter == 3:
-                assert len(lines.rstrip()) == len(fastq_reads[read_name][0]), 'Quality sequence must be same length as Read sequence'
+                assert len(lines.rstrip()) == len(fastq_reads[read_name][0])
                 fastq_reads[read_name][1] += lines.rstrip()
                 counter = 0
                 continue
