@@ -44,7 +44,7 @@ class dna:
                       'b', 'd', 'h', 'v', 'n',
                       '.', '-']
         self.dna = self.is_dna()
-    
+        self.length = len(self.sequence)
     #Corrects any nucleotides that are not IUPAC coded or any lowercase nucleotides
     #Runs in O(n) where n is the length of the sequence
     #Memory is n^2 where n is the length of the sequence because a new string is created
@@ -134,5 +134,18 @@ class dna:
                 return False
         return True
 
+    #Determine the Hamming Distance between two sequences of the same size
+    #Runs in O(n) where n is the length of the two sequences
+    #Takes no extra memory as no new sequences are created
+    def hamming_dist(self, second_sequence: str) -> int:
+        assert isinstance(second_sequence, dna)
+        assert self.length == second_sequence.length
+        distance = 0
+
+        for index in range(self.length):
+            if self.sequence[index] != second_sequence[index]:
+                distance += 1
+        
+        return distance
 
 #TODO: Create editDistance method? Or possible create an editDistance class?
