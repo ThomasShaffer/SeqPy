@@ -137,13 +137,12 @@ class dna:
     #Determine the Hamming Distance between two sequences of the same size
     #Runs in O(n) where n is the length of the two sequences
     #Takes no extra memory as no new sequences are created
-    def hamming_dist(self, second_sequence: str) -> int:
+    def hamming_dist(self, second_sequence) -> int:
         assert isinstance(second_sequence, dna)
         assert self.length == second_sequence.length
         distance = 0
-
         for index in range(self.length):
-            if self.sequence[index] != second_sequence[index]:
+            if self.sequence[index] != second_sequence.sequence[index]:
                 distance += 1
         
         return distance
