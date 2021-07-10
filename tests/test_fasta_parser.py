@@ -34,7 +34,7 @@ class test_correction(unittest.TestCase):
 
 		"""
 		fasta_file = FileParser('fasta.fa')
-		self.assertEqual(fasta_file.size, 2)
+		self.assertEqual(len(fasta_file.sequences.keys()), 2)
 		self.assertTrue(fasta_file.sequences['FASTA'] == 'AGTGAG')
 		self.assertTrue(fasta_file.sequences['FASTA2'] == 'AGUTAGAUT')
 
