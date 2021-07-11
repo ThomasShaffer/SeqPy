@@ -19,8 +19,10 @@ class test_hamming_distance(unittest.TestCase):
         self.assertEqual(dna_correct_1.hamming_dist(dna_correct_2), 3)
 
 
-    #def test_non_dna(self):
-     #   self.assertRaises()
+    def test_non_dna(self):
+        dna_sequence = dna('AGTGACGTAGACGATG')
+        rna_sequence = dna('AGTGATGACGTUTGAC')
+        self.assertRaises(AssertionError, dna_sequence.hamming_dist, rna_sequence)
 
 
 if __name__ == '__main__':
