@@ -147,4 +147,34 @@ class dna:
         
         return distance
 
-#TODO: Create editDistance method? Or possible create an editDistance class?
+#TODO: Create edit_dist method? Or possible create an editDistance class?
+    #edit_distance method to calculate shorest distance between two different DNA sequences
+    #We want to find the shortest way to make both strings equal eachother
+    #we do this with three different operations: insert, delete, and replace
+    #this is the basic logic behind the problem and we will start with the naive implementation
+        
+    #Naive implementation of edit_distance
+    #This algorithm will run in O(n^n) time
+    def edit_dist_naive(self, second_sequence) -> int:
+        
+        assert self.is_dna and second_sequence.is_dna
+        
+        return edit_distance_naive(self.sequence, second_sequence.sequence)
+    
+    def edit_distance_naive(sequence_one, sequence_two) -> int:
+               
+        #base cases for recursive calls
+        if len(sequence_one) == 0 and len(sequence_two) == 0:
+            return 0
+        if  len(sequence_one) == 0:
+            return len(sequence_two)
+        if len(sequence_two) == 0:
+            return len(sequence_one)
+
+        insert = 1 + edit_distance(sequence_one, sequence_two[1:])
+        delete = 1 + edit_distance(sequence_one[1:], sequence_two)
+        replace = 1 + edit_distnce(sequence_one[1:], sequence_two[1:])
+
+        return min(insert, delete, replace)
+
+
